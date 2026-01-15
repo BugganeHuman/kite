@@ -1,0 +1,3 @@
+.venv
+kite_db.sqlite3
+secret.env
