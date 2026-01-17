@@ -20,3 +20,11 @@ def signup(request):
 @login_required
 def home(request):
     return render(request, "base.html")
+
+def add_task(request):
+    if request.method == "POST":
+        task = request.POST.get("task")
+
+
+def show_tasks(request):
+    pass
