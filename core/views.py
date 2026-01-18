@@ -19,7 +19,7 @@ def signup(request):
     return render(request, "registration/signup.html", {"form": form})
 
 
-
+@login_required
 def add_task(request):
     if request.method == "POST":
         task =  Task(task=request.POST.get("task"), owner_id=request.user.id)
@@ -34,5 +34,4 @@ def show_tasks(request):
         "tasks": tasks
     }
     return render(request, "core/index.html", context)
-    # надо что был типо SELECT task FROM core_task WHERE owner_id == request.user.id
-    #HttpResponse (context['tasks'])
+    # типо SELECT task FROM core_task WHERE owner_id == request.user.id
