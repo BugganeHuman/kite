@@ -5,5 +5,5 @@ urlpatterns = [
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/signup/", signup, name="signup"),
     path("add_task/", add_task),
-    path("delete_task/<int:id>/", delete_task),
+    path("delete_task/<int:task_id>/", delete_task, name="delete_task"),
 ]

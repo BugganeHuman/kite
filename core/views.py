@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -22,8 +23,10 @@ def signup(request):
 def add_task(request):
     if request.method == "POST":
         task =  Task(task=request.POST.get("task"), owner_id=request.user.id)
-        if task:
+        if len(task.task) > 0  :
             task.save()
+            return redirect("home")
+        else:
             return redirect("home")
 
 @login_required
@@ -37,9 +40,13 @@ def show_tasks(request):
 
 @login_required
 def delete_task(request, task_id):
-    print("executed delete_task")
+    print("executing delete_task")
     if request.method == "POST":
-        deleted_task = Task.objects.filter(id = task_id)
-        print(deleted_task)
-        deleted_task.delete()
+        deleted_task = Task.objects.get(id = task_id)
+        if request.user.id == deleted_task.owner_id:
+            deleted_task.delete()
+            return redirect("home")
+        else:
+            return HttpResponse("GET OUT")
+    else:
         return redirect("home")

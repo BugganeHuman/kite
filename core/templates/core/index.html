@@ -6,7 +6,7 @@
 
         <span style="display: inline">{{ task.task }}</span>
 
-        <form action="delete_task/{{ task.id }}/>" method="POST">
+        <form action="{% url 'delete_task' task.id %}" method="POST">
             {% csrf_token %}
             <button style="display: inline" type="submit">del</button>
         </form>
