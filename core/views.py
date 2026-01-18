@@ -18,7 +18,6 @@ def signup(request):
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})
 
-
 @login_required
 def add_task(request):
     if request.method == "POST":
