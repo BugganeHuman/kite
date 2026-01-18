@@ -16,6 +16,13 @@
             <button type="submit">logout</button>
         </form>
 
+        <form action="http://127.0.0.1:8000/add_task/" method="post">
+            {% csrf_token %}
+            <input type="text" name="task">
+            <button type="submit">send</button>
+
+        </form>
+        
         {% block start %}
 
         {% endblock %}
