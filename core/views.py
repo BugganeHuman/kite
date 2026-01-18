@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -29,9 +28,18 @@ def add_task(request):
 
 @login_required
 def show_tasks(request):
-    tasks = Task.objects.values_list("task", flat=True).filter(owner_id=request.user.id)
+    tasks = Task.objects.all().filter(owner_id=request.user.id)
     context = {
         "tasks": tasks
     }
     return render(request, "core/index.html", context)
     # типо SELECT task FROM core_task WHERE owner_id == request.user.id
+
+@login_required
+def delete_task(request, task_id):
+    print("executed delete_task")
+    if request.method == "POST":
+        deleted_task = Task.objects.filter(id = task_id)
+        print(deleted_task)
+        deleted_task.delete()
+        return redirect("home")
