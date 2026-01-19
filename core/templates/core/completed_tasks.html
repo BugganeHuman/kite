@@ -1,0 +1,7 @@
+{% extends 'completed_tasks.html' %}
+
+{% block completed_tasks %}
+    {% for completed_task in completed_tasks %}
+        <div>{{ completed_task.completed_task }}</div>
+    {% endfor %}
+{% endblock %}

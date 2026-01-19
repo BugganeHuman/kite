@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Task
+from .models import Task, CompletedTask
 
 def signup(request):
     print("start signup")
@@ -43,9 +43,40 @@ def delete_task(request, task_id):
     if request.method == "POST":
         deleted_task = Task.objects.get(id = task_id)
         if request.user.id == deleted_task.owner_id:
+            CompletedTask(completed_task=deleted_task.task,
+                owner_id=deleted_task.owner_id).save()
             deleted_task.delete()
             return redirect("home")
         else:
             return HttpResponse("GET OUT")
     else:
         return redirect("home")
+
+@login_required
+def update_task(request, task_id, new_task):
+    if request.method == "POST":
+        updating_task = Task.objects.get(id=task_id)
+        if request.user.id == updating_task.owner_id:
+            updating_task.task = new_task
+            updating_task.save()
+            #return redirect("home")
+        else:
+            HttpResponse("GET OUT")
+    else:
+        redirect("home") # надо сделать интерфейс
+
+@login_required
+def delete_all_completed_tasks(request):
+    if request.method == "POST":
+        deleted_tasks = CompletedTask.objects.filter(owner_id=request.user.id)
+        deleted_tasks.delete()
+        return redirect("show_completed_tasks")
+    else:
+        return redirect("show_completed_tasks")
+
+def show_completed_tasks(request):
+    completed_tasks = CompletedTask.objects.all()
+    context = {
+        'completed_tasks': completed_tasks
+    }
+    return render(request, 'core/completed_tasks.html', context)
