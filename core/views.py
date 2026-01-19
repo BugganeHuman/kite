@@ -66,6 +66,14 @@ def update_task(request, task_id, new_task):
         redirect("home") # надо сделать интерфейс
 
 @login_required
+def show_completed_tasks(request):
+    completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id)
+    context = {
+        'completed_tasks': completed_tasks
+    }
+    return render(request, 'core/completed_tasks.html', context)
+
+@login_required
 def delete_all_completed_tasks(request):
     if request.method == "POST":
         deleted_tasks = CompletedTask.objects.filter(owner_id=request.user.id)
@@ -74,9 +82,15 @@ def delete_all_completed_tasks(request):
     else:
         return redirect("show_completed_tasks")
 
-def show_completed_tasks(request):
-    completed_tasks = CompletedTask.objects.all()
-    context = {
-        'completed_tasks': completed_tasks
-    }
-    return render(request, 'core/completed_tasks.html', context)
+@login_required
+def deleted_completed_task(request, completed_task_id):
+    if request.method == "POST":
+        deleting_completed_task = CompletedTask.objects.get(id=completed_task_id,
+        owner_id=request.user.id)
+        if deleting_completed_task:
+            deleting_completed_task.delete()
+            return redirect("show_completed_tasks")
+        else:
+            return HttpResponse("This record is not exist")
+    else:
+        return redirect("show_completed_tasks")

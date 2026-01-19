@@ -3,5 +3,10 @@
 {% block completed_tasks %}
     {% for completed_task in completed_tasks %}
         <div>{{ completed_task.completed_task }}</div>
+        <form action="{% url 'deleted_completed_task' completed_task.id %}"
+                method="post">
+            {% csrf_token %}
+        <button type="submit">delete</button>
+        </form>
     {% endfor %}
 {% endblock %}
