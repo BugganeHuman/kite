@@ -10,6 +10,10 @@
     <button type="submit" style="margin: 20px">go to home</button>
 </form>
 
+<form action="{% url 'show_tasks_work' %}">
+    <button type="submit" style="margin: 20px">go to work tasks</button>
+</form>
+
 <form action="{% url 'delete_all_completed_tasks' %}" method="post">
     {% csrf_token %}
     <button type="submit" style="margin: 20px">Delete All</button>

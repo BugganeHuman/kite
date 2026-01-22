@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kite Work</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <form action="{% url 'show_completed_tasks' %}">
+            <button type="submit">completed tasks</button>
+        </form>
+
+        <form action="{% url 'add_task' "work" %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="task">
+            <button type="submit">send</button>
+        </form>
+
+
+        {% block start %}
+
+        {% endblock %}
+    {% endif %}
+</body>
+</html>

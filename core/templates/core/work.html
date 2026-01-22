@@ -1,0 +1,17 @@
+{% extends 'work.html' %}
+
+{% block start %}
+	{% for task in tasks %}
+        <span>{{ task.task }}</span>
+
+        <form action="{% url 'delete_task' task.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">del</button>
+        </form>
+
+        <form action="{% url 'update_task' task.id "work test" %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">update</button>
+        </form>
+    {% endfor %}
+{% endblock %}
