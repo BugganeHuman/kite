@@ -60,16 +60,16 @@ def delete_task(request, task_id):
         return redirect("home")
 
 @login_required
-def update_task(request, task_id, new_task):
+def update_task(request, task_id,):
     if request.method == "POST":
         updating_task = Task.objects.get(id=task_id)
         if request.user.id == updating_task.owner_id:
-            updating_task.task = new_task
+            updating_task.task = request.POST.get("new_task")
             updating_task.save()
             if updating_task.category == "main":
-                return redirect("home")
+                return HttpResponse(request.POST.get("new_task"))
             elif updating_task.category == "work":
-                return redirect("show_tasks_work")
+                return HttpResponse(request.POST.get("new_task"))
             return HttpResponse("I don't now where redirect")
         else:
             return HttpResponse("GET OUT")

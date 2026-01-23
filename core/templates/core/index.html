@@ -12,12 +12,13 @@
             <button style="" type="submit">del</button>
         </form>
 
-        <!--<form hx-post="{"%" url 'update_task' 'test' %}" hx-target="#task"></form> -->
-
-        <form action="{% url 'update_task' task.id "test" %}" method="POST">
+        <form hx-post="{% url 'update_task' task.id %}" hx-target="#task" >
             {% csrf_token %}
-            <button type="submit" style="">update</button>
+            <input type="text" name="new_task">
+            <button type="submit">update</button>
+
         </form>
+
 
 
 

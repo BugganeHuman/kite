@@ -8,7 +8,7 @@ urlpatterns = [
     path("accounts/signup/", signup, name="signup"),
     path("add_task/<str:category>/", add_task, name="add_task"),
     path("delete_task/<int:task_id>/", delete_task, name="delete_task"),
-    path("update_task/<int:task_id>/<str:new_task>/", update_task, name="update_task"),
+    path("update_task/<int:task_id>/", update_task, name="update_task"),
     path("completed_tasks/", show_completed_tasks, name="show_completed_tasks"),
     path("deleted_completed_task/<int:completed_task_id>/", deleted_completed_task,
             name="deleted_completed_task"),
