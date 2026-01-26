@@ -2,16 +2,16 @@
 
 {% block start %}
 	{% for task in tasks %}
-        <span>{{ task.task }}</span>
+        <span class="task" id="id-{{ task.id }}">{{ task.task }}</span>
 
         <form action="{% url 'delete_task' task.id %}" method="POST">
             {% csrf_token %}
             <button type="submit">del</button>
         </form>
 
-        <form action="{% url 'update_task' task.id  %}" method="POST">
-            {% csrf_token %}
+        <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}">
             <button type="submit">update</button>
         </form>
+<!-- баг, при нажатие на update вызывается маршрут /work/  -->
     {% endfor %}
 {% endblock %}

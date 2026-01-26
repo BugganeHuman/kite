@@ -15,5 +15,7 @@ urlpatterns = [
     path("delete_all_completed_tasks/", delete_all_completed_tasks,
             name="delete_all_completed_tasks"),
     path("work/", show_tasks_work, name="show_tasks_work"),
-    path("show_update/<int:updated_task_id>/", show_update, name="show_update")
+    path("show_update/<int:updated_task_id>/", show_update, name="show_update"),
+    path("work/show_update/<int:updated_task_id>/", show_update, name="work_show_update"),
+
 ]

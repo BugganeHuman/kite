@@ -61,11 +61,11 @@ def delete_task(request, task_id):
 
 @login_required
 def update_task(request, task_id):
+    print(f"task_id= {task_id}")
     if request.method == "POST":
         updating_task = Task.objects.get(id=task_id)
         if request.user.id == updating_task.owner_id:
             updating_task.task = request.POST.get("new_task")
-
             updating_task.save()
             if updating_task.category == "main":
                 return HttpResponse(request.POST.get("new_task"))
@@ -80,6 +80,7 @@ def update_task(request, task_id):
         return redirect("home") # надо сделать интерфейс
 
 def show_update(request, updated_task_id):
+    print(f"executing show_update.  updated_task_id={updated_task_id}")
     task = Task.objects.get(id=updated_task_id)
     if request.user.id == task.owner_id:
         context = {
@@ -121,6 +122,7 @@ def deleted_completed_task(request, completed_task_id):
 
 @login_required
 def show_tasks_work(request):
+    print("executing show_tasks_work")
     if request.method == "GET":
         tasks = Task.objects.all().filter(owner_id=request.user.id, category="work")
         context = {

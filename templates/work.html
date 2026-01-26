@@ -3,11 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Kite Work</title>
+
+    <style>
+        body{
+            background-color: black;
+            color: green;
+            font-size: 35px;
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+        button{
+            font-size: 20px;
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+        input{
+            font-size: 20px;
+            font-family: "Segoe UI", system-ui, sans-serif;
+        }
+    </style>
+    <script src = "https://unpkg.com/htmx.org"></script>
 </head>
 <body>
     {% if user.is_authenticated %}
         <form action="{% url 'show_completed_tasks' %}">
             <button type="submit">completed tasks</button>
+        </form>
+
+        <form action="{% url 'home' %}">
+            <button type="submit">go to main tasks</button>
         </form>
 
         <form action="{% url 'add_task' "work" %}" method="POST">
