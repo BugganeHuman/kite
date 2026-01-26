@@ -60,30 +60,37 @@ def delete_task(request, task_id):
         return redirect("home")
 
 @login_required
-def update_task(request, task_id,):
+def update_task(request, task_id):
     if request.method == "POST":
         updating_task = Task.objects.get(id=task_id)
         if request.user.id == updating_task.owner_id:
-            #updating_task.task = request.POST.get("new_task")
-            updating_task.task = "test"
+            updating_task.task = request.POST.get("new_task")
+
             updating_task.save()
             if updating_task.category == "main":
-                #return HttpResponse(request.POST.get("new_task"))
-                return render(request, "core/partials/update_form.html")
+                return HttpResponse(request.POST.get("new_task"))
+                #return render(request, "core/partials/update_form.html")
             elif updating_task.category == "work":
-                #return HttpResponse(request.POST.get("new_task"))
-                return render(request, "core/partials/update_form.html")
+                return HttpResponse(request.POST.get("new_task"))
+                #return render(request, "core/partials/update_form.html")
             return HttpResponse("I don't know where redirect")
         else:
             return HttpResponse("GET OUT")
     else:
         return redirect("home") # надо сделать интерфейс
 
-def show_update(request):
-    return render(request, "core/partials/update_form.html")
+def show_update(request, updated_task_id):
+    task = Task.objects.get(id=updated_task_id)
+    if request.user.id == task.owner_id:
+        context = {
+            "task": task,
+        }
+        return render(request, "core/partials/update_form.html", context)
+    return redirect("home")
 
 @login_required
-def show_completed_tasks(request):
+def show_completed_tasks(request): # баг, аптейт делаетя только для певого таска,
+                                    # даже если кнопка нажата у другого таска
     completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id)
     context = {
         'completed_tasks': completed_tasks

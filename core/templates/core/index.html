@@ -5,15 +5,14 @@
 
         <div>
 
-        <span id = "task" style="">{{ task.task }}</span>
+        <span class="task" id="id-{{ task.id }}" style="">{{ task.task }}</span>
 
         <form action="{% url 'delete_task' task.id %}" method="POST">
             {% csrf_token %}
             <button style="" type="submit">del</button>
         </form>
 
-        <form hx-get="{% url 'show_update' %}" hx-target="#task" >
-
+        <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}">
             <button type="submit">update</button>
 
         </form>
