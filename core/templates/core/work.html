@@ -12,6 +12,6 @@
         <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}">
             <button type="submit">update</button>
         </form>
-<!-- баг, при нажатие на update вызывается маршрут /work/  -->
+
     {% endfor %}
 {% endblock %}
