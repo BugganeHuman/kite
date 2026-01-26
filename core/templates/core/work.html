@@ -9,7 +9,7 @@
             <button type="submit">del</button>
         </form>
 
-        <form action="{% url 'update_task' task.id "work test" %}" method="POST">
+        <form action="{% url 'update_task' task.id  %}" method="POST">
             {% csrf_token %}
             <button type="submit">update</button>
         </form>

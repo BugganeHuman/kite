@@ -64,17 +64,23 @@ def update_task(request, task_id,):
     if request.method == "POST":
         updating_task = Task.objects.get(id=task_id)
         if request.user.id == updating_task.owner_id:
-            updating_task.task = request.POST.get("new_task")
+            #updating_task.task = request.POST.get("new_task")
+            updating_task.task = "test"
             updating_task.save()
             if updating_task.category == "main":
-                return HttpResponse(request.POST.get("new_task"))
+                #return HttpResponse(request.POST.get("new_task"))
+                return render(request, "core/partials/update_form.html")
             elif updating_task.category == "work":
-                return HttpResponse(request.POST.get("new_task"))
-            return HttpResponse("I don't now where redirect")
+                #return HttpResponse(request.POST.get("new_task"))
+                return render(request, "core/partials/update_form.html")
+            return HttpResponse("I don't know where redirect")
         else:
             return HttpResponse("GET OUT")
     else:
         return redirect("home") # надо сделать интерфейс
+
+def show_update(request):
+    return render(request, "core/partials/update_form.html")
 
 @login_required
 def show_completed_tasks(request):
