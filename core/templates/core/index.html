@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
 {% block start %}
+    <ul style="width: 75%">
+
     {% for task in tasks %}
 
-        <div>
+        <li>
 
-        <span class="task" id="id-{{ task.id }}" style="">{{ task.task }}</span>
+        <div class="task" id="id-{{ task.id }}" style="">{{ task.task }}</div>
 
-        <form action="{% url 'delete_task' task.id %}" method="POST">
+        <form action="{% url 'delete_task' task.id %}" method="POST" class="form_inline_block">
             {% csrf_token %}
-            <button style="" type="submit">del</button>
+            <button style="" type="submit">delete</button>
         </form>
 
-        <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}">
+        <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}" class="form_inline_block">
             <button type="submit">update</button>
         </form>
 
-        </div>
+        </li>
 
     {% endfor %}
-
+    </ul>
 {% endblock %}

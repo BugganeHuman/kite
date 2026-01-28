@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,42 +8,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kite</title>
     <script src = "https://unpkg.com/htmx.org"></script>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
 
-    <style>
-        body {
-            background-color: black;
-            color: antiquewhite;
-        }
-    </style>
 
 </head>
 <body>
     {% if user.is_authenticated %}
-        <h2>Hello {{ user.username }}</h2>
-
-        <form action="{% url 'logout' %}" method="post">
+        <form action="{% url 'add_task' "main" %}" method="POST" class="form_inline_block">
             {% csrf_token %}
-            <button type="submit">logout</button>
+            <input type="text" name="task" id="input_task_main" class="input_task" placeholder="Write your task">
+            <button type="submit" id="btn_add_task_main" class="btn_add_task">Add</button>
+
         </form>
 
-        <form action="/completed_tasks/">
-            <button type="submit">completed_tasks</button>
-        </form>
+        <div class="hello_user">Hello {{ user.username }}</div>
 
-        <form action="{% url 'show_tasks_work' %}">
-            <button type="submit">work</button>
-        </form>
-
-        <form action="{% url 'add_task' "main" %}" method="POST">
+        <form class="form_inline_block" action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <input type="text" name="task">
-            <button type="submit">send</button>
-
+            <button type="submit" class="btn_logout" id="btn_logout_main">logout</button>
         </form>
-        
+
         {% block start %}
 
         {% endblock %}
+
+        <form action="{% url 'show_tasks_work' %}" class="form_inline_block" id="btn_redirect_work">
+            <button type="submit">work</button>
+        </form>
+
+        <form action="/completed_tasks/" class="form_inline_block" id="btn_redirect_completed_tasks">
+            <button type="submit">completed_tasks</button>
+        </form>
+
+
+
 
 
     {% endif %}

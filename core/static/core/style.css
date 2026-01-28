@@ -1,0 +1,70 @@
+body{
+    background-color: black;
+    color: antiquewhite;
+    font-family: monospace;
+}
+
+.input_task{
+    font-size: 40px;
+    font-family: monospace;
+    width: 800px;
+}
+
+.btn_add_task{
+    font-family: monospace;
+    font-size: 40px;
+    border-radius: 10%;
+    transition: transform 0.1s;
+}
+
+.btn_add_task:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+#form_add_task_work{
+    margin-left: 25%;
+}
+
+.hello_user{
+    font-size: 25px;
+    font-family: monospace;
+    display: inline-block;
+    margin-left: 600px;
+}
+
+.btn_logout{
+    font-size: 20px;
+    font-family: monospace;
+    transition: transform 0.1s;
+    background-color: #ec1b1b;
+    color: black;
+    margin-left: 50%;
+    display: inline-block;
+}
+
+.btn_logout:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+.form_inline_block{
+    display: inline-block;
+}
+
+.task{
+    font-size: 40px;
+    display: inline-block;
+}
+
+#btn_redirect_work{
+    position: fixed;
+    bottom: 20px;
+    right: 215px;
+}
+
+#btn_redirect_completed_tasks{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
