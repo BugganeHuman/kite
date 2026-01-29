@@ -6,37 +6,34 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kite Work</title>
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
     <script src = "https://unpkg.com/htmx.org"></script>
+    <title>Notes</title>
 </head>
-
 <body>
     {% if user.is_authenticated %}
-        <form action="{% url 'add_task' "work" %}" method="POST" id="form_add_task_work">
+
+        <form action="{% url 'add_task' "notes" %}" method="POST">
             {% csrf_token %}
-            <input type="text" name="task" id="input_task_work" class="input_task"
-                   placeholder="Write your work task">
-            <button type="submit" id="btn_add_task_work" class="btn_add_task">Add</button>
+            <textarea class="input_task" id="" cols="70" rows="5" name="task"></textarea>
+            <button type="submit" class="btn_add_task">Add</button>
         </form>
 
         {% block start %}
 
         {% endblock %}
 
-        <form action="{% url 'home' %}" id="btn_redirect_main_work">
+        <form action="{% url 'home' %}" id="btn_redirect_main_notes">
             <button type="submit">main</button>
         </form>
 
-        <form action="{% url 'show_notes' %}" id="btn_redirect_notes_work">
-            <button type="submit">notes</button>
+        <form action="{% url 'show_tasks_work' %}" id="btn_redirect_work_notes">
+            <button type="submit">work</button>
         </form>
 
-        <form action="{% url 'show_completed_tasks' %}" id="btn_redirect_completed_tasks_work">
+        <form action="{% url 'show_completed_tasks' %}" id="btn_redirect_completed_tasks_notes">
             <button type="submit">completed tasks</button>
         </form>
-
-
 
 
     {% endif %}

@@ -18,6 +18,8 @@ def signup(request):
 
 @login_required
 def add_task(request, category):
+    print("executing add_task")
+    print(request.path)
     if request.method == "POST":
         task =  Task(task=request.POST.get("task"), owner_id=request.user.id, category=category)
         if len(task.task.strip()) > 0  :
@@ -26,9 +28,14 @@ def add_task(request, category):
                 return redirect("home")
             elif category == "work":
                 return redirect("show_tasks_work")
+            elif category == "notes":
+                return redirect("show_notes")
+
             return HttpResponse("I don't now where redirect")
         else:
-            return redirect("home")
+            return redirect(request.META.get('HTTP_REFERER', '/'))
+    else:
+        return redirect("home")
 
 @login_required
 def show_tasks_main(request):
@@ -49,11 +56,19 @@ def delete_task(request, task_id):
                             owner_id=deleted_task.owner_id,
                             category=deleted_task.category).save()
             deleted_task.delete()
+
+
             if deleted_task.category == "main":
                 return redirect("home")
             elif deleted_task.category == "work":
                 return redirect("show_tasks_work")
+            elif deleted_task.category == "notes":
+                return redirect("show_notes")
+
             return HttpResponse("I don't now where redirect")
+
+
+            #return HttpResponse("")
         else:
             return HttpResponse("GET OUT")
     else:
@@ -67,17 +82,13 @@ def update_task(request, task_id):
         if request.user.id == updating_task.owner_id:
             updating_task.task = request.POST.get("new_task")
             updating_task.save()
-            if updating_task.category == "main":
-                return HttpResponse(request.POST.get("new_task"))
-                #return render(request, "core/partials/update_form.html")
-            elif updating_task.category == "work":
-                return HttpResponse(request.POST.get("new_task"))
-                #return render(request, "core/partials/update_form.html")
-            return HttpResponse("I don't know where redirect")
+            #return redirect(request.META.get('HTTP_REFERER', '/'))
+            return HttpResponse(request.POST.get("new_task"))
         else:
             return HttpResponse("GET OUT")
     else:
         return redirect("home") # надо сделать интерфейс
+
 
 def show_update(request, updated_task_id):
     print(f"executing show_update.  updated_task_id={updated_task_id}")
@@ -129,5 +140,16 @@ def show_tasks_work(request):
             "tasks": tasks
         }
         return render(request, "core/work.html", context)
+    else:
+        return redirect("home")
+
+@login_required
+def show_notes(request):
+    if request.method == "GET":
+        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes")
+        context = {
+            "notes" : notes,
+        }
+        return render(request, "core/notes.html", context)
     else:
         return redirect("home")

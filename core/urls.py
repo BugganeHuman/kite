@@ -1,7 +1,8 @@
 from django.urls import path, include
 from .views import (signup, show_tasks_main, add_task, delete_task,
                     update_task, show_completed_tasks, deleted_completed_task,
-                    delete_all_completed_tasks, show_tasks_work, show_update)
+                    delete_all_completed_tasks, show_tasks_work, show_update,
+                    show_notes,)
 urlpatterns = [
     path("", show_tasks_main, name="home"),
     path("accounts/", include("django.contrib.auth.urls")),
@@ -17,5 +18,5 @@ urlpatterns = [
     path("work/", show_tasks_work, name="show_tasks_work"),
     path("show_update/<int:updated_task_id>/", show_update, name="show_update"),
     path("work/show_update/<int:updated_task_id>/", show_update, name="work_show_update"),
-
+    path("notes/", show_notes, name="show_notes"),
 ]

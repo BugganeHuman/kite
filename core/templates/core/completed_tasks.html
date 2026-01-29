@@ -1,13 +1,21 @@
 {% extends 'completed_tasks.html' %}
 
 {% block completed_tasks %}
+    <ul class="list">
+
     {% for completed_task in completed_tasks %}
-        <div>{{ completed_task.completed_at }}</div>
-        <div>{{ completed_task.completed_task }}</div>
+        <li>
+
+        <div class="date_of_completed_completed_tasks">{{ completed_task.completed_at }}</div>
+        <div class="completed_task">{{ completed_task.completed_task }}</div>
         <form action="{% url 'deleted_completed_task' completed_task.id %}"
-                method="post">
+                method="post" class="btn_delete_completed_task">
             {% csrf_token %}
         <button type="submit">delete</button>
         </form>
+
+        </li>
     {% endfor %}
+
+    </ul>
 {% endblock %}

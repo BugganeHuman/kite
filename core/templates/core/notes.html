@@ -1,0 +1,25 @@
+{% extends 'notes.html' %}
+
+{% block start %}
+    <ul class="list">
+
+	{% for note in notes %}
+        <li>
+        <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
+
+        <form action="{% url 'delete_task' note.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" id="btn_delete_id-{{ note.id }}">delete</button>
+        </form>
+
+        <form hx-post="{% url 'show_update' note.id %}" hx-target="#id-{{ note.id }}"
+                >
+            {% csrf_token %}
+            <button type="submit" id="btn_update_id-{{ note.id }}">update</button>
+        </form>
+
+        </li>
+    {% endfor %}
+
+    </ul>
+{% endblock %}

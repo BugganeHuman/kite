@@ -4,6 +4,10 @@ body{
     font-family: monospace;
 }
 
+*{
+    box-sizing: border-box;
+}
+
 .input_task{
     font-size: 40px;
     font-family: monospace;
@@ -57,14 +61,105 @@ body{
     display: inline-block;
 }
 
-#btn_redirect_work{
+#btn_redirect_work_main{
     position: fixed;
     bottom: 20px;
     right: 215px;
 }
 
-#btn_redirect_completed_tasks{
+#btn_redirect_completed_tasks_main{
     position: fixed;
     bottom: 20px;
+    right: 20px;
+}
+
+#btn_redirect_completed_tasks_work{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#btn_redirect_main_work{
+    position: fixed;
+    bottom: 20px;
+    right: 215px;
+}
+
+.list{
+    width: 75%;
+}
+
+form{
+    display: inline-block;
+}
+
+.date_of_completed_completed_tasks{
+    font-size: 20px;
+}
+
+.completed_task{
+    font-size: 30px;
+    display: inline-block;
+}
+
+.btn_delete_completed_task{
+
+}
+
+#btn_redirect_notes_main{
+    position: fixed;
+    bottom: 20px;
+    right: 150px;
+}
+
+#btn_redirect_notes_work{
+    position: fixed;
+    bottom: 20px;
+    right: 150px;
+}
+
+#btn_redirect_completed_tasks_notes{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#btn_redirect_work_notes{
+    position: fixed;
+    bottom: 20px;
+    right: 150px;
+}
+
+#btn_redirect_main_notes{
+    position: fixed;
+    bottom: 20px;
+    right: 210px;
+}
+
+ul li:not(:last-child){
+    margin-bottom: 30px;
+}
+
+#btn_redirect_notes_completed_tasks{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+#btn_redirect_work_completed_tasks{
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+}
+
+#btn_redirect_main_completed_tasks{
+    position: fixed;
+    bottom: 20px;
+    right: 160px;
+}
+
+#btn_delete_all_completed_tasks{
+    position: fixed;
+    top: 20px;
     right: 20px;
 }

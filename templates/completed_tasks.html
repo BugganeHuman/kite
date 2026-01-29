@@ -11,19 +11,25 @@
 </head>
 <body>
 
-<form action="{% url 'home' %}">
-    <button type="submit" style="margin: 20px">go to home</button>
-</form>
-
-<form action="{% url 'show_tasks_work' %}">
-    <button type="submit" style="margin: 20px">go to work tasks</button>
-</form>
-
-<form action="{% url 'delete_all_completed_tasks' %}" method="post">
-    {% csrf_token %}
-    <button type="submit" style="margin: 20px">Delete All</button>
-</form>
 {% block completed_tasks %}
 {% endblock %}
+
+<form action="{% url 'home' %}" id="btn_redirect_main_completed_tasks">
+    <button type="submit">main</button>
+</form>
+
+<form action="{% url 'show_tasks_work' %}" id="btn_redirect_work_completed_tasks">
+    <button type="submit">work</button>
+</form>
+
+<form action="{% url 'delete_all_completed_tasks' %}" method="post" id="btn_delete_all_completed_tasks">
+    {% csrf_token %}
+    <button type="submit">Delete All</button>
+</form>
+
+<form action="{% url 'show_notes' %}" id="btn_redirect_notes_completed_tasks">
+    <button type="submit">notes</button>
+</form>
+
 </body>
 </html>
