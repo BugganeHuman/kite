@@ -18,6 +18,15 @@
             <button type="submit" id="btn_update_id-{{ note.id }}">update</button>
         </form>
 
+        <form action="{% url 'task_to_up' note.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">⇧</button>
+        </form>
+
+        <form action="{% url 'task_to_down' note.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">⇩</button>
+        </form>
         </li>
     {% endfor %}
 

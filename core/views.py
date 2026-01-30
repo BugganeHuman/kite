@@ -39,7 +39,7 @@ def add_task(request, category):
 
 @login_required
 def show_tasks_main(request):
-    tasks = Task.objects.all().filter(owner_id=request.user.id, category="main")
+    tasks = Task.objects.all().filter(owner_id=request.user.id, category="main").order_by("-id")
     context = {
         "tasks": tasks
     }
@@ -93,7 +93,7 @@ def show_update(request, updated_task_id):
 @login_required
 def show_completed_tasks(request): # баг, аптейт делаетя только для певого таска,
                                     # даже если кнопка нажата у другого таска
-    completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id)
+    completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id).order_by("-id")
     context = {
         'completed_tasks': completed_tasks
     }
@@ -110,9 +110,7 @@ def delete_all_completed_tasks(request):
 
 @login_required
 def deleted_completed_task(request, completed_task_id):
-    print(f"executing deleted_completed_task.\n"
-          f" completed_task_id)= {completed_task_id}\n"
-          f" method= {request.method}")
+    print(f"executing deleted_completed_task")
     if request.method == "POST":
         deleting_completed_task = CompletedTask.objects.get(id=completed_task_id,
         owner_id=request.user.id)
@@ -128,7 +126,7 @@ def deleted_completed_task(request, completed_task_id):
 def show_tasks_work(request):
     print("executing show_tasks_work")
     if request.method == "GET":
-        tasks = Task.objects.all().filter(owner_id=request.user.id, category="work")
+        tasks = Task.objects.all().filter(owner_id=request.user.id, category="work").order_by("-id")
         context = {
             "tasks": tasks
         }
@@ -139,10 +137,25 @@ def show_tasks_work(request):
 @login_required
 def show_notes(request):
     if request.method == "GET":
-        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes")
+        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("order")
         context = {
             "notes" : notes,
         }
         return render(request, "core/notes.html", context)
     else:
         return redirect("home")
+
+@login_required
+def task_to_up(request, task_id):
+    if request.method == "POST":
+        task = Task.objects.get(id=task_id, owner_id=request.user.id)
+        task.up()
+        return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+@login_required
+def task_to_down(request, task_id):
+    if request.method == "POST":
+        task = Task.objects.get(id=task_id, owner_id=request.user.id)
+        task.down()
+        return redirect(request.META.get("HTTP_REFERER", "/"))
