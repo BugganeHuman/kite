@@ -4,14 +4,15 @@
     <ul class="list">
 
     {% for completed_task in completed_tasks %}
-        <li>
+        <li id="completed_li_id-{{ completed_task.id }}">
 
         <div class="date_of_completed_completed_tasks">{{ completed_task.completed_at }}</div>
         <div class="completed_task">{{ completed_task.completed_task }}</div>
-        <form action="{% url 'deleted_completed_task' completed_task.id %}"
-                method="post" class="btn_delete_completed_task">
+        <form hx-post="{% url 'deleted_completed_task' completed_task.id %}"
+              class="btn_delete_completed_task" hx-target="#completed_li_id-{{ completed_task.id }}"
+                hx-swap="delete">
             {% csrf_token %}
-        <button type="submit">delete</button>
+            <button type="submit">delete</button>
         </form>
 
         </li>

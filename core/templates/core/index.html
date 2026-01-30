@@ -5,16 +5,16 @@
 
     {% for task in tasks %}
 
-        <li>
+        <li id="li_id-{{ task.id }}">
 
         <div class="task" id="id-{{ task.id }}">{{ task.task }}</div>
 
-        <form action="{% url 'delete_task' task.id %}" method="POST">
+        <form hx-post="{% url 'delete_task' task.id %}" hx-target="#li_id-{{ task.id }}" hx-swap="delete">
             {% csrf_token %}
             <button style="" type="submit">delete</button>
         </form>
 
-        <form hx-get="{% url 'show_update' task.id %}" hx-target="#id-{{ task.id }}">
+        <form hx-get="{% url 'show_update' task.id %}" hx-target="#li_id-{{ task.id }}">
             <button type="submit">update</button>
         </form>
 

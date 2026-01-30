@@ -4,15 +4,15 @@
     <ul class="list">
 
 	{% for note in notes %}
-        <li>
+        <li id="li_id-{{ note.id }}">
         <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
 
-        <form action="{% url 'delete_task' note.id %}" method="POST">
+        <form hx-post="{% url 'delete_task' note.id %}" hx-target="#li_id-{{ note.id }}" hx-swap="delete">
             {% csrf_token %}
             <button type="submit" id="btn_delete_id-{{ note.id }}">delete</button>
         </form>
 
-        <form hx-post="{% url 'show_update' note.id %}" hx-target="#id-{{ note.id }}"
+        <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"
                 >
             {% csrf_token %}
             <button type="submit" id="btn_update_id-{{ note.id }}">update</button>

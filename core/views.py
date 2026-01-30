@@ -56,19 +56,7 @@ def delete_task(request, task_id):
                             owner_id=deleted_task.owner_id,
                             category=deleted_task.category).save()
             deleted_task.delete()
-
-
-            if deleted_task.category == "main":
-                return redirect("home")
-            elif deleted_task.category == "work":
-                return redirect("show_tasks_work")
-            elif deleted_task.category == "notes":
-                return redirect("show_notes")
-
-            return HttpResponse("I don't now where redirect")
-
-
-            #return HttpResponse("")
+            return HttpResponse("")
         else:
             return HttpResponse("GET OUT")
     else:
@@ -83,7 +71,9 @@ def update_task(request, task_id):
             updating_task.task = request.POST.get("new_task")
             updating_task.save()
             #return redirect(request.META.get('HTTP_REFERER', '/'))
-            return HttpResponse(request.POST.get("new_task"))
+            #return HttpResponse(request.POST.get("new_task"))
+            return render(request, "core/partials/update_result.html",
+                    {"task" : Task.objects.get(id=task_id, owner_id=request.user.id)})
         else:
             return HttpResponse("GET OUT")
     else:
@@ -120,12 +110,15 @@ def delete_all_completed_tasks(request):
 
 @login_required
 def deleted_completed_task(request, completed_task_id):
+    print(f"executing deleted_completed_task.\n"
+          f" completed_task_id)= {completed_task_id}\n"
+          f" method= {request.method}")
     if request.method == "POST":
         deleting_completed_task = CompletedTask.objects.get(id=completed_task_id,
         owner_id=request.user.id)
         if deleting_completed_task:
             deleting_completed_task.delete()
-            return redirect("show_completed_tasks")
+            return HttpResponse("")
         else:
             return HttpResponse("This record is not exist")
     else:

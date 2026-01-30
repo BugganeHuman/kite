@@ -1,4 +1,4 @@
-<form hx-post="{% url 'update_task' task.id %}" hx-target="#id-{{ task.id }}">
+<form hx-post="{% url 'update_task' task.id %}" hx-target="#li_id-{{ task.id }}">
     {% csrf_token %}
     <input type="text" name="new_task" value="{{ task.task }}">
     <button type="submit">update</button>
