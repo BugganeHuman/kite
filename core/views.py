@@ -137,7 +137,7 @@ def show_tasks_work(request):
 @login_required
 def show_notes(request):
     if request.method == "GET":
-        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("order")
+        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("_order")
         context = {
             "notes" : notes,
         }
@@ -159,3 +159,4 @@ def task_to_down(request, task_id):
         task = Task.objects.get(id=task_id, owner_id=request.user.id)
         task.down()
         return redirect(request.META.get("HTTP_REFERER", "/"))
+

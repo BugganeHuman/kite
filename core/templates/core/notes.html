@@ -7,9 +7,12 @@
         <li id="li_id-{{ note.id }}">
         <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
 
-        <form hx-post="{% url 'delete_task' note.id %}" hx-target="#li_id-{{ note.id }}" hx-swap="delete">
+
+        <form >
             {% csrf_token %}
-            <button type="submit" id="btn_delete_id-{{ note.id }}">delete</button>
+            <input type="checkbox" hx-post="{% url 'delete_task' note.id %}"
+                hx-target="#li_id-{{ note.id }}" hx-swap="delete" >
+            <!-- тут надо добавить задержку и эфект зачеркивания -->
         </form>
 
         <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"
@@ -18,15 +21,7 @@
             <button type="submit" id="btn_update_id-{{ note.id }}">update</button>
         </form>
 
-        <form action="{% url 'task_to_up' note.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit">⇧</button>
-        </form>
 
-        <form action="{% url 'task_to_down' note.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit">⇩</button>
-        </form>
         </li>
     {% endfor %}
 
