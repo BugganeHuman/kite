@@ -11,8 +11,9 @@
         <form >
             {% csrf_token %}
             <input type="checkbox" hx-post="{% url 'delete_task' note.id %}"
-                hx-target="#li_id-{{ note.id }}" hx-swap="delete" >
-            <!-- тут надо добавить задержку и эфект зачеркивания -->
+                hx-target="#li_id-{{ note.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
+                onclick="document.getElementById('id-{{ note.id }}').style.textDecoration =
+                        this.checked ? 'line-through' : 'none'">
         </form>
 
         <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"

@@ -9,9 +9,12 @@
 
         <div class="task" id="id-{{ task.id }}">{{ task.task }}</div>
 
-        <form hx-post="{% url 'delete_task' task.id %}" hx-target="#li_id-{{ task.id }}" hx-swap="delete">
+        <form >
             {% csrf_token %}
-            <button style="" type="submit">delete</button>
+            <input type="checkbox" hx-post="{% url 'delete_task' task.id %}"
+                hx-target="#li_id-{{ task.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
+                onclick="document.getElementById('id-{{ task.id }}').style.textDecoration =
+                        this.checked ? 'line-through' : 'none'">
         </form>
 
         <form hx-get="{% url 'show_update' task.id %}" hx-target="#li_id-{{ task.id }}">

@@ -109,7 +109,7 @@ def delete_all_completed_tasks(request):
         return redirect("show_completed_tasks")
 
 @login_required
-def deleted_completed_task(request, completed_task_id):
+def delete_completed_task(request, completed_task_id):
     print(f"executing deleted_completed_task")
     if request.method == "POST":
         deleting_completed_task = CompletedTask.objects.get(id=completed_task_id,
