@@ -12,15 +12,19 @@
 </head>
 <body>
 
+{% if user.is_authenticated %}
+
+
+
 {% block completed_tasks %}
 {% endblock %}
 
 <form action="{% url 'home' %}" id="btn_redirect_main_completed_tasks">
-    <button type="submit">main</button>
+    <button type="submit" class="btn_redirect_main">main</button>
 </form>
 
 <form action="{% url 'show_tasks_work' %}" id="btn_redirect_work_completed_tasks">
-    <button type="submit">work</button>
+    <button type="submit" class="btn_redirect_work">work</button>
 </form>
 
 <form action="{% url 'delete_all_completed_tasks' %}" method="post" id="btn_delete_all_completed_tasks">
@@ -29,8 +33,9 @@
 </form>
 
 <form action="{% url 'show_notes' %}" id="btn_redirect_notes_completed_tasks">
-    <button type="submit">notes</button>
+    <button type="submit" class="btn_redirect_notes">notes</button>
 </form>
 
+{% endif %}
 </body>
 </html>

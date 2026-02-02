@@ -13,13 +13,14 @@
             <input type="checkbox" hx-post="{% url 'delete_task' note.id %}"
                 hx-target="#li_id-{{ note.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
                 onclick="document.getElementById('id-{{ note.id }}').style.textDecoration =
-                        this.checked ? 'line-through' : 'none'">
+                        this.checked ? 'line-through' : 'none'"
+                        class="checkbox_delete">
         </form>
 
         <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"
                 >
             {% csrf_token %}
-            <button type="submit" id="btn_update_id-{{ note.id }}">update</button>
+            <button type="submit" id="btn_update_id-{{ note.id }}" class="btn_update">✏️</button>
         </form>
 
 

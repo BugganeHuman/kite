@@ -33,15 +33,15 @@
         {% endblock %}
 
         <form action="{% url 'show_tasks_work' %}" id="btn_redirect_work_main">
-            <button type="submit">work</button>
+            <button type="submit" class="btn_redirect_work">work</button>
         </form>
 
         <form action="{% url 'show_notes' %}" id="btn_redirect_notes_main">
-            <button type="submit">notes</button>
+            <button type="submit" class="btn_redirect_notes">notes</button>
         </form>
 
         <form action="/completed_tasks/" id="btn_redirect_completed_tasks_main">
-            <button type="submit">completed_tasks</button>
+            <button type="submit" class="btn_redirect_completed_tasks">completed tasks</button>
         </form>
 
 

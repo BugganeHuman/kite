@@ -64,12 +64,12 @@ body{
 #btn_redirect_work_main{
     position: fixed;
     bottom: 20px;
-    right: 215px;
+    right: 200px;
 }
 
 #btn_redirect_completed_tasks_main{
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
 }
 
@@ -109,7 +109,7 @@ form{
 #btn_redirect_notes_main{
     position: fixed;
     bottom: 20px;
-    right: 150px;
+    right: 20px;
 }
 
 #btn_redirect_notes_work{
@@ -162,4 +162,80 @@ ul li:not(:last-child){
     position: fixed;
     top: 20px;
     right: 20px;
+}
+
+.btn_update{
+    transition: transoform 0.1s;
+    font-family: monospace;
+    font-size: 25px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.btn_update:active{
+    transform: scale(0.90);
+    filter: brightness(0.9);
+}
+
+.checkbox_delete{
+    width: 30px;
+    height: 30px;
+}
+
+#textarea_update{
+    font-size: 30px;
+    font-family: monospace;
+}
+
+#btn_update_in_update_form{
+    transition: transfrom 0.1s;
+    font-family: monospace;
+    font-size: 25px;
+}
+#btn_update_in_update_form:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+.btn_redirect_main{
+    transition: transfrom 0.1s;
+    font-size: 20px;
+    font-family: monospace;
+}
+.btn_redirect_main:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+.btn_redirect_work{
+    transition: transfrom 0.1s;
+    font-size: 20px;
+    font-family: monospace;
+}
+.btn_redirect_work:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+.btn_redirect_notes{
+    transition: transfrom 0.1s;
+    font-size: 20px;
+    font-family: monospace;
+}
+.btn_redirect_notes:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
+}
+
+.btn_redirect_completed_tasks{
+    transition: transfrom 0.1s;
+    font-size: 20px;
+    font-family: monospace;
+}
+.btn_redirect_completed_tasks:active{
+    transform: scale(0.97);
+    filter: brightness(0.9);
 }

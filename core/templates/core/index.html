@@ -14,11 +14,12 @@
             <input type="checkbox" hx-post="{% url 'delete_task' task.id %}"
                 hx-target="#li_id-{{ task.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
                 onclick="document.getElementById('id-{{ task.id }}').style.textDecoration =
-                        this.checked ? 'line-through' : 'none'">
+                        this.checked ? 'line-through' : 'none'"
+                        class="checkbox_delete">
         </form>
 
-        <form hx-get="{% url 'show_update' task.id %}" hx-target="#li_id-{{ task.id }}">
-            <button type="submit">update</button>
+        <form hx-get="{% url 'show_update' task.id %}" hx-target="#li_id-{{ task.id }}" >
+            <button type="submit" class="btn_update">✏️</button>
         </form>
 
         </li>

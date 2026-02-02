@@ -15,7 +15,8 @@
             <input type="checkbox" hx-post="{% url 'delete_completed_task' completed_task.id %}"
                 hx-target="#completed_li_id-{{ completed_task.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
                 onclick="document.getElementById('completed_task_id-{{ completed_task.id }}').style.textDecoration =
-                        this.checked ? 'line-through' : 'none'">
+                        this.checked ? 'line-through' : 'none'"
+                        style="width: 20px; height: 20px">
         </form>
 
         </li>
