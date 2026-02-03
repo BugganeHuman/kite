@@ -1,6 +1,6 @@
 body{
-    background-color: black;
-    color: antiquewhite;
+    background-color: rgb(33, 30, 30);
+    color: aliceblue;
     font-family: monospace;
 }
 
@@ -12,6 +12,8 @@ body{
     font-size: 40px;
     font-family: monospace;
     width: 800px;
+    margin-left: 40px;
+    margin-top: 10px;
 }
 
 .btn_add_task{
@@ -27,24 +29,28 @@ body{
 }
 
 #form_add_task_work{
-    margin-left: 25%;
+    margin-left: 20%;
 }
 
 .hello_user{
-    font-size: 25px;
-    font-family: monospace;
     display: inline-block;
-    margin-left: 600px;
+    font-size: 20px;
+    font-family: monospace;
+    position: fixed;
+    right: 20px;
+    top: 100px;
 }
 
 .btn_logout{
     font-size: 20px;
     font-family: monospace;
     transition: transform 0.1s;
-    background-color: #ec1b1b;
-    color: black;
-    margin-left: 50%;
-    display: inline-block;
+    background-color: darkcyan;
+    padding: 10px;
+    border: none;
+    border-radius: 10%;
+    color: bisque;
+
 }
 
 .btn_logout:active{
@@ -52,24 +58,29 @@ body{
     filter: brightness(0.9);
 }
 
-.form_inline_block{
+#form_logout_main{
     display: inline-block;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+
 }
 
 .task{
     font-size: 40px;
     display: inline-block;
+    line-height: 1.6;
 }
 
 #btn_redirect_work_main{
     position: fixed;
     bottom: 20px;
-    right: 200px;
+    right: 330px;
 }
 
 #btn_redirect_completed_tasks_main{
     position: fixed;
-    bottom: 80px;
+    bottom: 20px;
     right: 20px;
 }
 
@@ -82,7 +93,7 @@ body{
 #btn_redirect_main_work{
     position: fixed;
     bottom: 20px;
-    right: 215px;
+    right: 330px;
 }
 
 .list{
@@ -109,13 +120,13 @@ form{
 #btn_redirect_notes_main{
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 230px;
 }
 
 #btn_redirect_notes_work{
     position: fixed;
     bottom: 20px;
-    right: 150px;
+    right: 230px;
 }
 
 #btn_redirect_completed_tasks_notes{
@@ -127,13 +138,13 @@ form{
 #btn_redirect_work_notes{
     position: fixed;
     bottom: 20px;
-    right: 150px;
+    right: 230px;
 }
 
 #btn_redirect_main_notes{
     position: fixed;
     bottom: 20px;
-    right: 210px;
+    right: 320px;
 }
 
 ul li:not(:last-child){
@@ -149,19 +160,34 @@ ul li:not(:last-child){
 #btn_redirect_work_completed_tasks{
     position: fixed;
     bottom: 20px;
-    right: 90px;
+    right: 120px;
 }
 
 #btn_redirect_main_completed_tasks{
     position: fixed;
     bottom: 20px;
-    right: 160px;
+    right: 210px;
 }
 
-#btn_delete_all_completed_tasks{
+#form_delete_all_completed_tasks{
     position: fixed;
     top: 20px;
     right: 20px;
+}
+
+#btn_delete_all_completed_tasks{
+    transition: transform 0.1s;
+    font-size: 20px;
+    font-family: monospace;
+    padding: 10px;
+    border: none;
+    color: bisque;
+    border-radius: 7%;
+    background-color: darkred;
+}
+#btn_delete_all_completed_tasks:active{
+    transform: scale(0.95);
+    filter: brightness(0.9);
 }
 
 .btn_update{
@@ -174,7 +200,6 @@ ul li:not(:last-child){
     cursor: pointer;
     outline: inherit;
 }
-
 .btn_update:active{
     transform: scale(0.90);
     filter: brightness(0.9);
@@ -193,7 +218,10 @@ ul li:not(:last-child){
 #btn_update_in_update_form{
     transition: transfrom 0.1s;
     font-family: monospace;
-    font-size: 25px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 10%;
+    border: none;
 }
 #btn_update_in_update_form:active{
     transform: scale(0.95);
@@ -204,6 +232,11 @@ ul li:not(:last-child){
     transition: transfrom 0.1s;
     font-size: 20px;
     font-family: monospace;
+    padding: 15px;
+    border: none;
+    border-radius: 10%;
+    color: bisque;
+    background-color: #529a34;
 }
 .btn_redirect_main:active{
     transform: scale(0.95);
@@ -214,6 +247,11 @@ ul li:not(:last-child){
     transition: transfrom 0.1s;
     font-size: 20px;
     font-family: monospace;
+    padding: 15px;
+    border: none;
+    border-radius: 10%;
+    background-color: #c05a24;
+    color: bisque;
 }
 .btn_redirect_work:active{
     transform: scale(0.95);
@@ -224,6 +262,12 @@ ul li:not(:last-child){
     transition: transfrom 0.1s;
     font-size: 20px;
     font-family: monospace;
+    padding: 15px;
+    border: none;
+    border-radius: 10%;
+    color: bisque;
+    background-color: #249caa;
+    background-color: #1d1fc1;
 }
 .btn_redirect_notes:active{
     transform: scale(0.95);
@@ -234,6 +278,11 @@ ul li:not(:last-child){
     transition: transfrom 0.1s;
     font-size: 20px;
     font-family: monospace;
+    border: none;
+    padding: 15px;
+    border-radius: 7%;
+    color: bisque;
+    background-color: #543e96;;
 }
 .btn_redirect_completed_tasks:active{
     transform: scale(0.97);

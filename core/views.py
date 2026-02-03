@@ -137,7 +137,7 @@ def show_tasks_work(request):
 @login_required
 def show_notes(request):
     if request.method == "GET":
-        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("_order")
+        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("-id")
         context = {
             "notes" : notes,
         }

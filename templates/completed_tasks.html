@@ -27,9 +27,9 @@
     <button type="submit" class="btn_redirect_work">work</button>
 </form>
 
-<form action="{% url 'delete_all_completed_tasks' %}" method="post" id="btn_delete_all_completed_tasks">
+<form action="{% url 'delete_all_completed_tasks' %}" method="post" id="form_delete_all_completed_tasks">
     {% csrf_token %}
-    <button type="submit">Delete All</button>
+    <button type="submit" id="btn_delete_all_completed_tasks">Delete All</button>
 </form>
 
 <form action="{% url 'show_notes' %}" id="btn_redirect_notes_completed_tasks">

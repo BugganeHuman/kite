@@ -21,9 +21,9 @@
 
         </form>
 
-        <div class="hello_user">Hello {{ user.username }}</div>
+        <div class="hello_user">user: {{ user.username }}</div>
 
-        <form action="{% url 'logout' %}" method="post">
+        <form action="{% url 'logout' %}" method="post" id="form_logout_main">
             {% csrf_token %}
             <button type="submit" class="btn_logout" id="btn_logout_main">logout</button>
         </form>
