@@ -10,8 +10,11 @@ def signup(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            print("form.is_valid")
             login(request, form.save())
             return redirect("home")
+        else:
+            print("NOT VALID - ", form.errors.as_data())
     else:
         form = UserCreationForm()
     return render(request, "registration/signup.html", {"form": form})

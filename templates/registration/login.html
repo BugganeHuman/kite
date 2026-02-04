@@ -1,7 +1,33 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+
 <div>Login</div>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div>
+        <label>username: </label>
+        {{ form.username }}
+    </div>
+
+    <div>
+        <label>password</label>
+        {{ form.password }}
+    </div>
     <button type="submit">login</button>
-    <a href="http://127.0.0.1:8000/accounts/signup/">signup</a>
+    <a href="{% url 'signup' %}">signup</a>
 </form>
+
+</body>
+</html>

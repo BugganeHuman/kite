@@ -208,6 +208,7 @@ ul li:not(:last-child){
 .checkbox_delete{
     width: 30px;
     height: 30px;
+    accent-color: #e30d0d;
 }
 
 #textarea_update{
@@ -287,4 +288,24 @@ ul li:not(:last-child){
 .btn_redirect_completed_tasks:active{
     transform: scale(0.97);
     filter: brightness(0.9);
+}
+.checkbox_delete_completed_task{
+    width: 20px;
+    height: 20px;
+    accent-color: #0404ff;
+}
+
+#form_signup{
+    font-size: 30px;
+    position: absolute;
+    top: 35%;
+    left: 40%;
+}
+
+#input_username_signup{
+    font-size: 25px;
+}
+
+.input_signup{
+    font-size: 25px;
 }

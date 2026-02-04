@@ -1,6 +1,49 @@
-<div>Sign Up</div>
-<form method="post">
+{% load static %}
+{% load widget_tweaks %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+
+<form method="post" class="auth-form" id="form_signup">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div>Sign Up</div>
+
+    <div>
+        <label>username: </label>
+        {% render_field form.username id="input_username_signup" class="input_signup"%}
+        {% if form.username.errors %}
+        	<div>{{ form.username.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        <label>password</label>
+        {% render_field form.password1 id="input_password1_signup" class="input_signup" %}
+        {% if form.password1.errors %}
+            <div>{{ form.password1.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+    <div>
+        <label>password again</label>
+        {% render_field form.password2 id="input_password2_signup" class="input_signup" %}
+        {% if form.password2.errors %}
+        	<div>{{ form.password2.errors.0 }}</div>
+        {% endif %}
+    </div>
+
+
     <button type="submit">send</button>
+    <a href="{% url 'login' %}">login</a>
 </form>
+</body>
+</html>

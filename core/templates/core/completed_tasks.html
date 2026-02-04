@@ -16,7 +16,8 @@
                 hx-target="#completed_li_id-{{ completed_task.id }}" hx-swap="delete" hx-trigger="change delay:500ms"
                 onclick="document.getElementById('completed_task_id-{{ completed_task.id }}').style.textDecoration =
                         this.checked ? 'line-through' : 'none'"
-                        style="width: 20px; height: 20px">
+                        class="checkbox_delete_completed_task">
+
         </form>
 
         </li>
