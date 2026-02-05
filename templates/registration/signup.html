@@ -8,42 +8,44 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SignUp</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="{% static 'core/auth.css' %}">
+    <script src = "https://unpkg.com/htmx.org"></script>
 </head>
 <body>
 
-<form method="post" class="auth-form" id="form_signup">
+<form method="post" id="form_signup">
     {% csrf_token %}
-    <div>Sign Up</div>
+    <div id="title_signup">Sign up</div>
 
-    <div>
-        <label>username: </label>
-        {% render_field form.username id="input_username_signup" class="input_signup"%}
+    <a href="{% url 'login' %}" id="a_redirect_login_signup">
+        <button type="button" id="btn_for_redirect_to_login_in_signup">Log in</button>
+    </a>
+
+
+    <div class="field_signup">
+        {% render_field form.username id="input_username_signup" class="input_signup" placeholder="username"%}
         {% if form.username.errors %}
         	<div>{{ form.username.errors.0 }}</div>
         {% endif %}
     </div>
 
-    <div>
-        <label>password</label>
-        {% render_field form.password1 id="input_password1_signup" class="input_signup" %}
+    <div class="field_signup">
+        {% render_field form.password1 id="input_password1_signup" class="input_signup" placeholder="password"%}
         {% if form.password1.errors %}
             <div>{{ form.password1.errors.0 }}</div>
         {% endif %}
     </div>
 
-    <div>
-        <label>password again</label>
-        {% render_field form.password2 id="input_password2_signup" class="input_signup" %}
+    <div class="field_signup">
+        {% render_field form.password2 id="input_password2_signup" class="input_signup" placeholder="password again"%}
         {% if form.password2.errors %}
         	<div>{{ form.password2.errors.0 }}</div>
         {% endif %}
     </div>
 
 
-    <button type="submit">send</button>
-    <a href="{% url 'login' %}">login</a>
+    <button type="submit" id="btn_submit_signup">send</button>
 </form>
 </body>
 </html>

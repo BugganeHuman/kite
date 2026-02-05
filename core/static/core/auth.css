@@ -1,0 +1,77 @@
+body{
+    background-color: black;
+    color: aliceblue;
+    font-family: monospace;
+}
+
+#form_signup{
+    font-size: 30px;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    border-radius: 5%;
+    box-shadow: 0 0 10px rgb(69, 163, 48);
+    padding: 20px;
+}
+
+
+
+.input_signup{
+    font-size: 30px;
+    font-family: monospace;
+    background-color: black;
+    color: #d3dde4;
+    border-radius: 5px;
+    border: 1px solid #171717;
+}
+
+.field_signup{
+    margin-top: 15px;
+}
+
+
+#btn_submit_signup{
+    font-size: 25px;
+    color: aliceblue;
+    border: none;
+    border-radius: 3%;
+    transition: transform 0.1s;
+    margin-left: 7%;
+    padding: 3px;
+    font-family: monospace;
+    background-color: #000000;
+    margin-top: 20px;
+    width: 300px;
+    box-shadow: 0 0 5px rgb(69, 163, 48);
+
+}
+#btn_submit_signup:active{
+    transform: scale(0.95);
+    filter: brightness(0.90);
+}
+
+#title_signup{
+    display: inline-block;
+    margin-left: 25%;
+}
+
+#a_redirect_login_signup{
+    display: inline-block;
+    margin-left: 50px;
+}
+
+#btn_for_redirect_to_login_in_signup{
+    transition: transform 0.1s;
+    font-family: monospace;
+    font-size: 15px;
+    padding: 3px;
+    border: none;
+    background-color: black;
+    color: aliceblue ;
+    box-shadow: 0 0 3px rgb(69, 163, 48);
+    border-radius: 3px;
+}
+#btn_for_redirect_to_login_in_signup:active{
+    transform: scale(0.95);
+    filter: brightness(0.90);
+}

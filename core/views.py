@@ -94,8 +94,7 @@ def show_update(request, updated_task_id):
     return redirect("home")
 
 @login_required
-def show_completed_tasks(request): # баг, аптейт делаетя только для певого таска,
-                                    # даже если кнопка нажата у другого таска
+def show_completed_tasks(request):
     completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id).order_by("-id")
     context = {
         'completed_tasks': completed_tasks

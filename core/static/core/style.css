@@ -295,17 +295,3 @@ ul li:not(:last-child){
     accent-color: #0404ff;
 }
 
-#form_signup{
-    font-size: 30px;
-    position: absolute;
-    top: 35%;
-    left: 40%;
-}
-
-#input_username_signup{
-    font-size: 25px;
-}
-
-.input_signup{
-    font-size: 25px;
-}
