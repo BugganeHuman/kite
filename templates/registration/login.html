@@ -13,22 +13,29 @@
 </head>
 <body>
 
-<div>Log in</div>
-<form method="post">
+<form method="post" class="form_auth">
     {% csrf_token %}
-    <div>
-        <label>username: </label>
-        {{ form.username }}
+    <div class="title_auth">Log in</div>
+
+    <a href="{% url 'signup' %}" class="a_redirect_auth">
+        <button type="button" class="btn_for_redirect_in_auth">Sign up</button>
+    </a>
+
+    <div class="field_auth">
+
+        {% render_field form.username placeholder="username" class="input_auth" %}
+        {% if form.non_field_errors %}
+
+        {% endif %}
     </div>
 
-    <div>
-        <label>password</label>
-        {{ form.password }}
+    <div class="field_auth">
+        {% render_field form.password placeholder="password" class="input_auth" %}
+        {% if form.non_field_errors %}
+            <div class="errors_auth">{{ form.non_field_errors|first }}</div>
+        {% endif %}
     </div>
-    <button type="submit">Log in</button>
-    <a href="{% url 'signup' %}">
-        <button type="button">Sign up</button>
-    </a>
+    <button type="submit" class="btn_submit_auth">Log in</button>
 </form>
 
 </body>

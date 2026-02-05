@@ -4,7 +4,7 @@ body{
     font-family: monospace;
 }
 
-#form_signup{
+.form_auth{
     font-size: 30px;
     position: absolute;
     top: 30%;
@@ -14,9 +14,7 @@ body{
     padding: 20px;
 }
 
-
-
-.input_signup{
+.input_auth{
     font-size: 30px;
     font-family: monospace;
     background-color: black;
@@ -25,12 +23,11 @@ body{
     border: 1px solid #171717;
 }
 
-.field_signup{
+.field_auth{
     margin-top: 15px;
 }
 
-
-#btn_submit_signup{
+.btn_submit_auth{
     font-size: 25px;
     color: aliceblue;
     border: none;
@@ -43,24 +40,23 @@ body{
     margin-top: 20px;
     width: 300px;
     box-shadow: 0 0 5px rgb(69, 163, 48);
-
 }
-#btn_submit_signup:active{
+.btn_submit_auth:active{
     transform: scale(0.95);
     filter: brightness(0.90);
 }
 
-#title_signup{
+.title_auth{
     display: inline-block;
     margin-left: 25%;
 }
 
-#a_redirect_login_signup{
+.a_redirect_auth{
     display: inline-block;
     margin-left: 50px;
 }
 
-#btn_for_redirect_to_login_in_signup{
+.btn_for_redirect_in_auth{
     transition: transform 0.1s;
     font-family: monospace;
     font-size: 15px;
@@ -71,7 +67,14 @@ body{
     box-shadow: 0 0 3px rgb(69, 163, 48);
     border-radius: 3px;
 }
-#btn_for_redirect_to_login_in_signup:active{
+.btn_for_redirect_in_auth:active{
     transform: scale(0.95);
     filter: brightness(0.90);
+}
+
+.errors_auth{
+    margin-top: 7px;
+    font-family: monospace;
+    font-size: 15px;
+    color: darkred;
 }

@@ -14,38 +14,38 @@
 </head>
 <body>
 
-<form method="post" id="form_signup">
+<form method="post" class="form_auth">
     {% csrf_token %}
-    <div id="title_signup">Sign up</div>
+    <div class="title_auth">Sign up</div>
 
-    <a href="{% url 'login' %}" id="a_redirect_login_signup">
-        <button type="button" id="btn_for_redirect_to_login_in_signup">Log in</button>
+    <a href="{% url 'login' %}" class="a_redirect_auth">
+        <button type="button" class="btn_for_redirect_in_auth">Log in</button>
     </a>
 
 
-    <div class="field_signup">
-        {% render_field form.username id="input_username_signup" class="input_signup" placeholder="username"%}
+    <div class="field_auth">
+        {% render_field form.username id="input_username_signup" class="input_auth" placeholder="username"%}
         {% if form.username.errors %}
-        	<div>{{ form.username.errors.0 }}</div>
+        	<div class="errors_auth">{{ form.username.errors.0 }}</div>
         {% endif %}
     </div>
 
-    <div class="field_signup">
-        {% render_field form.password1 id="input_password1_signup" class="input_signup" placeholder="password"%}
+    <div class="field_auth">
+        {% render_field form.password1 id="input_password1_signup" class="input_auth" placeholder="password"%}
         {% if form.password1.errors %}
-            <div>{{ form.password1.errors.0 }}</div>
+            <div class="errors_auth">{{ form.password1.errors.0 }}</div>
         {% endif %}
     </div>
 
-    <div class="field_signup">
-        {% render_field form.password2 id="input_password2_signup" class="input_signup" placeholder="password again"%}
+    <div class="field_auth">
+        {% render_field form.password2 id="input_password2_signup" class="input_auth" placeholder="password again"%}
         {% if form.password2.errors %}
-        	<div>{{ form.password2.errors.0 }}</div>
+        	<div class="errors_auth">{{ form.password2.errors.0 }}</div>
         {% endif %}
     </div>
 
 
-    <button type="submit" id="btn_submit_signup">send</button>
+    <button type="submit" class="btn_submit_auth">send</button>
 </form>
 </body>
 </html>
