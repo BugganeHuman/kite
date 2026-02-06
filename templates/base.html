@@ -10,8 +10,8 @@
     <script src = "https://unpkg.com/htmx.org"></script>
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
 
-
 </head>
+
 <body>
     {% if user.is_authenticated %}
         <form action="{% url 'add_task' "main" %}" method="POST" >
@@ -21,12 +21,14 @@
 
         </form>
 
-        <div class="hello_user">user: {{ user.username }}</div>
+        <button class="btn_change_theme">🔆</button>
 
         <form action="{% url 'logout' %}" method="post" id="form_logout_main">
             {% csrf_token %}
             <button type="submit" class="btn_logout" id="btn_logout_main">logout</button>
         </form>
+
+        <div class="hello_user">user: {{ user.username }}</div>
 
         {% block start %}
 
@@ -47,6 +49,7 @@
 
 
 
+    <script src="{% static 'core/js/script.js' %}"></script>
 
     {% endif %}
 </body>

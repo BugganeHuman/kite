@@ -5,8 +5,9 @@
 
 	{% for note in notes %}
         <li id="li_id-{{ note.id }}">
-        <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
 
+        <!-- test -->
+        <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
 
         <form >
             {% csrf_token %}
@@ -17,6 +18,8 @@
                         class="checkbox_delete">
         </form>
 
+            <!-- end test -->
+            
         <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"
                 >
             {% csrf_token %}

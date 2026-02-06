@@ -147,13 +147,16 @@ def show_notes(request):
     else:
         return redirect("home")
 
+def change_theme(request):
+    pass
+
+
 @login_required
 def task_to_up(request, task_id):
     if request.method == "POST":
         task = Task.objects.get(id=task_id, owner_id=request.user.id)
         task.up()
         return redirect(request.META.get("HTTP_REFERER", "/"))
-
 
 @login_required
 def task_to_down(request, task_id):

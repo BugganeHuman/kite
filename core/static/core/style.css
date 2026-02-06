@@ -1,4 +1,8 @@
 body{
+    /*
+    background-color: aliceblue;
+    color: black;
+     */
     background-color: rgb(33, 30, 30);
     color: aliceblue;
     font-family: monospace;
@@ -38,7 +42,7 @@ body{
     font-family: monospace;
     position: fixed;
     right: 20px;
-    top: 100px;
+    top: 170px;
 }
 
 .btn_logout{
@@ -52,7 +56,6 @@ body{
     color: bisque;
 
 }
-
 .btn_logout:active{
     transform: scale(0.95);
     filter: brightness(0.9);
@@ -62,7 +65,7 @@ body{
     display: inline-block;
     position: fixed;
     right: 20px;
-    top: 20px;
+    top: 90px;
 
 }
 
@@ -70,6 +73,15 @@ body{
     font-size: 40px;
     display: inline-block;
     line-height: 1.6;
+    /* мейби это оставить или убрать
+
+    background-color: #dde4ec;
+    background-color: #d7dee1;
+    */
+    background-color: rgb(37, 34, 34);
+    border-radius: 10px;
+    width: 75%;
+    /* end test */
 }
 
 #btn_redirect_work_main{
@@ -111,6 +123,11 @@ form{
 .completed_task{
     font-size: 30px;
     display: inline-block;
+    line-height: 1.5;
+    width: 75%;
+    background-color: rgb(37, 34, 34);
+    border-radius: 10px;
+
 }
 
 .btn_delete_completed_task{
@@ -206,14 +223,20 @@ ul li:not(:last-child){
 }
 
 .checkbox_delete{
+    transition: transform 0.1s;
     width: 30px;
     height: 30px;
     accent-color: #e30d0d;
 }
+.checkbox_delete:active{
+    transform: scale(0.93);
+    filter: brightness(0.9);
+}
 
 #textarea_update{
-    font-size: 30px;
+    font-size: 40px;
     font-family: monospace;
+    border-radius: 10px;
 }
 
 #btn_update_in_update_form{
@@ -267,7 +290,6 @@ ul li:not(:last-child){
     border: none;
     border-radius: 10%;
     color: bisque;
-    background-color: #249caa;
     background-color: #1d1fc1;
 }
 .btn_redirect_notes:active{
@@ -295,3 +317,20 @@ ul li:not(:last-child){
     accent-color: #0404ff;
 }
 
+.btn_change_theme{
+    position: fixed;
+    right: 20px;
+    top: 5px;
+    border-radius: 100%;
+    font-size: 40px;
+    border: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.btn_change_theme:active{
+    transform: scale(0.90);
+}

@@ -1,6 +1,10 @@
+{% load static %}
+
 <form hx-post="{% url 'update_task' task.id %}" hx-target="#li_id-{{ task.id }}">
     {% csrf_token %}
 
-    <textarea name="new_task" id="textarea_update" cols="40" rows="6">{{ task.task }}</textarea>
+    <textarea name="new_task" id="textarea_update" cols="46" rows="6">{{ task.task }}</textarea>
     <button type="submit" id="btn_update_in_update_form">update</button>
 </form>
+<script src="{% static 'core/js/script.js' %}"></script>
+
