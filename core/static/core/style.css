@@ -75,7 +75,7 @@ body{
     line-height: 1.6;
     /* мейби это оставить или убрать
 
-    background-color: #dde4ec;
+    background-color:
     background-color: #d7dee1;
     */
     background-color: rgb(37, 34, 34);
@@ -246,6 +246,8 @@ ul li:not(:last-child){
     padding: 10px;
     border-radius: 10%;
     border: none;
+    background-color: #dde4ec;
+    background-color: #5bbee8;
 }
 #btn_update_in_update_form:active{
     transform: scale(0.95);
@@ -333,4 +335,22 @@ ul li:not(:last-child){
 }
 .btn_change_theme:active{
     transform: scale(0.90);
+}
+
+.move_task{
+    transition: transform 0.1s;
+    border: none;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    font-size: 30px;
+    color: rgb(178, 23, 23);
+}
+
+.move_task:active{
+    transform: scale(0.90);
+}
+
+ul li:first-child{
+    margin-top: 50px;
 }

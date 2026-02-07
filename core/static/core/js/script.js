@@ -1,4 +1,7 @@
+
+
 changeTheme()
+
 
 
 let themeBtn = document.querySelector(".btn_change_theme")
@@ -59,7 +62,6 @@ else if (localStorage.getItem("theme") === "light") {
             completed_task.style.backgroundColor = "#dde4ec"
         })
 
-        //document.getElementById("btn_update_in_update_form").style.backgroundColor = "black"
 }
 }
 

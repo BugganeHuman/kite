@@ -1,5 +1,5 @@
 from django.db import models
-from ordered_model.models import OrderedModel
+
 
 class Task(models.Model):
     task = models.TextField()

@@ -147,10 +147,6 @@ def show_notes(request):
     else:
         return redirect("home")
 
-def change_theme(request):
-    pass
-
-
 @login_required
 def task_to_up(request, task_id):
     if request.method == "POST":
