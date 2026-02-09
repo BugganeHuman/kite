@@ -1,16 +1,15 @@
 from django.db import models
+from positions import PositionField
 
 
 class Task(models.Model):
     task = models.TextField()
     owner_id = models.BigIntegerField()
     category = models.CharField(max_length=50)
-    order_field_name = "_order"
-    order = models.PositiveIntegerField(editable=False,
-                db_index=True, null=True, blank=True)
+    position = PositionField(collection='category')
 
     class Meta:
-        order_with_respect_to = "category"
+        ordering = ['position']
 
 class CompletedTask(models.Model):
     completed_task = models.TextField()

@@ -1,10 +1,10 @@
 {% extends 'work.html' %}
 
 {% block start %}
-    <ul class="list">
+    <ul class="list" id="tasks_list_work">
 
 	{% for task in tasks %}
-        <li id="li_id-{{ task.id }}">
+        <li id="li_id-{{ task.id }}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
         <span class="task" id="id-{{ task.id }}">{{ task.task }}</span>
 
@@ -21,8 +21,37 @@
             <button type="submit" class="btn_update">✏️</button>
         </form>
 
+
+        <button hx-post="{% url 'move_task' task.id "up" %}"
+                    hx-target="#tasks_list_work"
+                    hx-swap="outerHTML"
+                    hx-select="#tasks_list_work"
+                    class="move_task"
+
+        >⇧</button>
+
+        <button hx-post="{% url 'move_task' task.id "down" %}"
+                    hx-swap="outerHTML"
+                    hx-target="#tasks_list_work"
+                    hx-select="#tasks_list_work"
+                    class="move_task"
+
+        >⇩</button>
+
+
         </li>
 
     {% endfor %}
     </ul>
+
+    <script>
+            document.body.addEventListener('htmx:afterSettle', function(event) {
+                if (event.detail.target.id === "tasks_list_work") {
+
+                    changeTheme();
+                }
+            });
+        </script>
+
+
 {% endblock %}

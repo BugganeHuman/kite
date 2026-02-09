@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Task, CompletedTask
@@ -73,14 +73,13 @@ def update_task(request, task_id):
         if request.user.id == updating_task.owner_id:
             updating_task.task = request.POST.get("new_task")
             updating_task.save()
-            #return redirect(request.META.get('HTTP_REFERER', '/'))
-            #return HttpResponse(request.POST.get("new_task"))
+
             return render(request, "core/partials/update_result.html",
                     {"task" : Task.objects.get(id=task_id, owner_id=request.user.id)})
         else:
             return HttpResponse("GET OUT")
     else:
-        return redirect("home") # надо сделать интерфейс
+        return redirect("home")
 
 
 def show_update(request, updated_task_id):
@@ -139,9 +138,9 @@ def show_tasks_work(request):
 @login_required
 def show_notes(request):
     if request.method == "GET":
-        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("-id")
+        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("position")
         context = {
-            "notes" : notes,
+            "tasks" : notes,
         }
         return render(request, "core/notes.html", context)
     else:
@@ -161,3 +160,24 @@ def task_to_down(request, task_id):
         task.down()
         return redirect(request.META.get("HTTP_REFERER", "/"))
 
+@login_required
+def move_task(request, task_id, direction):
+    task = get_object_or_404(Task, id=task_id)
+
+    if direction == "up":
+        task.position -= 1
+        task.save()
+    elif direction == "down":
+        task.position += 1
+        task.save()
+
+    tasks = Task.objects.filter(category=task.category, owner_id= request.user.id)
+
+    if task.category == "notes":
+        return render(request, "core/notes.html", {"tasks" : tasks})
+    elif task.category == "work":
+        return render(request, "core/work.html", {"tasks": tasks})
+    elif task.category == "main":
+        return render(request, "core/index.html", {"tasks": tasks})
+
+    return redirect(request.META.get("HTTP_REFERER", "/"))

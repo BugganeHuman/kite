@@ -17,6 +17,23 @@
         <button type="submit" class="btn_update">✏️</button>
     </form>
 
+            <button hx-post="{% url 'move_task' task.id "up" %}"
+                    hx-target="closest ul"
+                    hx-swap="outerHTML"
+                    hx-select="closest ul"
+                    class="move_task"
+
+        >⇧</button>
+
+        <button hx-post="{% url 'move_task' task.id "down" %}"
+                    hx-swap="outerHTML"
+                    hx-target="closest ul"
+                    hx-select="closest ul"
+                    class="move_task"
+
+        >⇩</button>
+
+
 </li>
 
 <script>

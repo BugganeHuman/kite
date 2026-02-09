@@ -1,7 +1,4 @@
-
-
 changeTheme()
-
 
 
 let themeBtn = document.querySelector(".btn_change_theme")
@@ -26,9 +23,8 @@ themeBtn.addEventListener("click" , () => {
 
 
 
-
-
 function changeTheme() {
+    console.log("changeTheme() ex")
 if (localStorage.getItem("theme") === false) {
     localStorage.setItem("theme", "dark")
 }
@@ -61,14 +57,5 @@ else if (localStorage.getItem("theme") === "light") {
         document.querySelectorAll(".completed_task").forEach(completed_task => {
             completed_task.style.backgroundColor = "#dde4ec"
         })
-
 }
 }
-
-
-
-// надо - что бы при входе проверялся local storage и если там есть что то то делал:
-//      если dark то ставит темные цвета и btn = 🔆, если light то светлые и btn = 🌙
-// если local storage не создан, то создать и записать туда светлую тему
-
-// при нажатие кнопки - если был 🔆 станет 🌙 и local storage перепишется на light и так же в обратную сторану
