@@ -9,9 +9,8 @@ load_dotenv(BASE_DIR/"secret.env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['kite365.pythonanywhere.com']
 
 
 INSTALLED_APPS = [
