@@ -6,7 +6,7 @@
 	{% for task in tasks %}
         <li id="li_id-{{ task.id }}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
-        <span class="task" id="id-{{ task.id }}">{{ task.task }}</span>
+        <span class="task" id="id-{{ task.id }}">{{ task.task|linebreaksbr }}</span>
 
         <form >
             {% csrf_token %}
@@ -17,7 +17,7 @@
                         class="checkbox_delete">
         </form>
 
-        <form hx-get="{% url 'show_update' task.id %}" hx-target="#li_id-{{ task.id }}" >
+        <form hx-get="{% url 'show_update' task.id 'tasks_list_work' %}" hx-target="#li_id-{{ task.id }}" >
             <button type="submit" class="btn_update">✏️</button>
         </form>
 

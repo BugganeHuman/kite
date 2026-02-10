@@ -24,7 +24,8 @@ def add_task(request, category):
     print("executing add_task")
     print(request.path)
     if request.method == "POST":
-        task =  Task(task=request.POST.get("task"), owner_id=request.user.id, category=category)
+        task =  Task(task=request.POST.get("task"),
+                    owner_id=request.user.id, category=category)
         if len(task.task.strip()) > 0  :
             task.save()
             if category == "main":
@@ -42,7 +43,8 @@ def add_task(request, category):
 
 @login_required
 def show_tasks_main(request):
-    tasks = Task.objects.all().filter(owner_id=request.user.id, category="main").order_by("-id")
+    tasks = Task.objects.all().filter(owner_id=request.user.id,
+                category="main").order_by("-position")
     context = {
         "tasks": tasks
     }
@@ -66,35 +68,52 @@ def delete_task(request, task_id):
         return redirect("home")
 
 @login_required
-def update_task(request, task_id):
+def update_task(request, task_id, tasks_list):
     print(f"task_id= {task_id}")
     if request.method == "POST":
         updating_task = Task.objects.get(id=task_id)
         if request.user.id == updating_task.owner_id:
             updating_task.task = request.POST.get("new_task")
             updating_task.save()
+            if tasks_list == "tasks_list_main":
+                tasks = Task.objects.filter(owner_id=request.user.id,
+                            category="main").order_by("-position")
+                return render(request, "core/index.html",
+                    {"tasks" : tasks})
 
-            return render(request, "core/partials/update_result.html",
-                    {"task" : Task.objects.get(id=task_id, owner_id=request.user.id)})
+            elif tasks_list == "tasks_list_work":
+                tasks = Task.objects.filter(owner_id=request.user.id,
+                            category="work").order_by("-position")
+                return render(request, "core/work.html",
+                    {"tasks" : tasks})\
+
+            elif tasks_list == "tasks_list_notes":
+                tasks = Task.objects.filter(owner_id=request.user.id,
+                            category="notes").order_by("-position")
+                return render(request, "core/notes.html",
+                    {"tasks" : tasks})
+
+            return HttpResponse("")
         else:
             return HttpResponse("GET OUT")
     else:
         return redirect("home")
 
-
-def show_update(request, updated_task_id):
+def show_update(request, updated_task_id, tasks_list):
     print(f"executing show_update.  updated_task_id={updated_task_id}")
     task = Task.objects.get(id=updated_task_id)
     if request.user.id == task.owner_id:
         context = {
             "task": task,
+            "tasks_list" : tasks_list,
         }
         return render(request, "core/partials/update_form.html", context)
     return redirect("home")
 
 @login_required
 def show_completed_tasks(request):
-    completed_tasks = CompletedTask.objects.all().filter(owner_id=request.user.id).order_by("-id")
+    completed_tasks = CompletedTask.objects.all().filter(
+                        owner_id=request.user.id).order_by("-id")
     context = {
         'completed_tasks': completed_tasks
     }
@@ -127,7 +146,8 @@ def delete_completed_task(request, completed_task_id):
 def show_tasks_work(request):
     print("executing show_tasks_work")
     if request.method == "GET":
-        tasks = Task.objects.all().filter(owner_id=request.user.id, category="work").order_by("-id")
+        tasks = Task.objects.all().filter(owner_id=request.user.id,
+                        category="work").order_by("-position")
         context = {
             "tasks": tasks
         }
@@ -138,7 +158,8 @@ def show_tasks_work(request):
 @login_required
 def show_notes(request):
     if request.method == "GET":
-        notes = Task.objects.all().filter(owner_id=request.user.id, category="notes").order_by("position")
+        notes = Task.objects.all().filter(owner_id=request.user.id,
+                    category="notes").order_by("-position")
         context = {
             "tasks" : notes,
         }
@@ -147,28 +168,14 @@ def show_notes(request):
         return redirect("home")
 
 @login_required
-def task_to_up(request, task_id):
-    if request.method == "POST":
-        task = Task.objects.get(id=task_id, owner_id=request.user.id)
-        task.up()
-        return redirect(request.META.get("HTTP_REFERER", "/"))
-
-@login_required
-def task_to_down(request, task_id):
-    if request.method == "POST":
-        task = Task.objects.get(id=task_id, owner_id=request.user.id)
-        task.down()
-        return redirect(request.META.get("HTTP_REFERER", "/"))
-
-@login_required
 def move_task(request, task_id, direction):
     task = get_object_or_404(Task, id=task_id)
 
     if direction == "up":
-        task.position -= 1
+        task.position += 1
         task.save()
     elif direction == "down":
-        task.position += 1
+        task.position -= 1
         task.save()
 
     tasks = Task.objects.filter(category=task.category, owner_id= request.user.id)

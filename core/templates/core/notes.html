@@ -1,7 +1,5 @@
 {% extends 'notes.html' %}
-{% load static %}
 
-<script src="{% static 'core/js/script.js' %}"></script>
 
 {% block start %}
 
@@ -9,7 +7,7 @@
 	{% for note in tasks %}
         <li id="li_id-{{ note.id }}">
 
-        <div id="id-{{ note.id }}" class="task">{{ note.task }}</div>
+        <div id="id-{{ note.id }}" class="task">{{ note.task|linebreaksbr }}</div>
 
         <form >
             {% csrf_token %}
@@ -20,27 +18,27 @@
                         class="checkbox_delete">
         </form>
 
-        <form hx-post="{% url 'show_update' note.id %}" hx-target="#li_id-{{ note.id }}"
+
+        <form hx-get="{% url 'show_update' note.id 'tasks_list_notes' %}" hx-target="#li_id-{{ note.id }}"
                 >
-            {% csrf_token %}
             <button type="submit" id="btn_update_id-{{ note.id }}" class="btn_update">✏️</button>
         </form>
 
-            <button hx-post="{% url 'move_task' note.id "up" %}"
+        <button hx-post="{% url 'move_task' note.id "up" %}"
                     hx-target="closest ul"
                     hx-swap="outerHTML"
                     hx-select="#tasks_list_notes"
                     class="move_task"
 
-            >⇧</button>
+        >⇧</button>
 
-            <button hx-post="{% url 'move_task' note.id "down" %}"
+        <button hx-post="{% url 'move_task' note.id "down" %}"
                     hx-swap="outerHTML"
                     hx-target="#tasks_list_notes"
                     hx-select="#tasks_list_notes"
                     class="move_task"
 
-            >⇩</button>
+        >⇩</button>
 
         </li>
 

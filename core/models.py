@@ -9,7 +9,7 @@ class Task(models.Model):
     position = PositionField(collection='category')
 
     class Meta:
-        ordering = ['position']
+        ordering = ['-position']
 
 class CompletedTask(models.Model):
     completed_task = models.TextField()

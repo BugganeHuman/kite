@@ -7,8 +7,8 @@
         <li id="completed_li_id-{{ completed_task.id }}">
 
         <div class="date_of_completed_completed_tasks">{{ completed_task.completed_at }}</div>
-        <div id="completed_task_id-{{ completed_task.id }}" class="completed_task">{{ completed_task.completed_task }}</div>
-
+        <div id="completed_task_id-{{ completed_task.id }}" class="completed_task">
+            {{ completed_task.completed_task|linebreaksbr }}</div>
 
         <form >
             {% csrf_token %}
