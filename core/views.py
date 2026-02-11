@@ -28,12 +28,10 @@ def add_task(request, category):
                     owner_id=request.user.id, category=category)
         if len(task.task.strip()) > 0  :
             task.save()
-            if category == "main":
-                return redirect("home")
-            elif category == "work":
-                return redirect("show_tasks_work")
-            elif category == "notes":
-                return redirect("show_notes")
+
+            tasks = Task.objects.filter(owner_id=request.user.id, category=category)
+            if category:
+                return render(request, f"core/{category}.html", {"tasks" : tasks} )
 
             return HttpResponse("I don't now where redirect")
         else:
@@ -48,7 +46,7 @@ def show_tasks_main(request):
     context = {
         "tasks": tasks
     }
-    return render(request, "core/index.html", context)
+    return render(request, "core/main.html", context)
     # типо SELECT task FROM core_task WHERE owner_id == request.user.id
 
 @login_required
@@ -78,8 +76,8 @@ def update_task(request, task_id, tasks_list):
             if tasks_list == "tasks_list_main":
                 tasks = Task.objects.filter(owner_id=request.user.id,
                             category="main").order_by("-position")
-                return render(request, "core/index.html",
-                    {"tasks" : tasks})
+                return render(request, "core/main.html",
+                              {"tasks" : tasks})
 
             elif tasks_list == "tasks_list_work":
                 tasks = Task.objects.filter(owner_id=request.user.id,
@@ -185,6 +183,6 @@ def move_task(request, task_id, direction):
     elif task.category == "work":
         return render(request, "core/work.html", {"tasks": tasks})
     elif task.category == "main":
-        return render(request, "core/index.html", {"tasks": tasks})
+        return render(request, "core/main.html", {"tasks": tasks})
 
     return redirect(request.META.get("HTTP_REFERER", "/"))

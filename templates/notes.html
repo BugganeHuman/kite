@@ -14,7 +14,8 @@
 <body>
     {% if user.is_authenticated %}
 
-        <form action="{% url 'add_task' "notes" %}" method="POST">
+        <form hx-post="{% url 'add_task' "notes" %}" hx-target="#tasks_list_notes"
+                hx-select="#tasks_list_notes" hx-swap="outerHTML">
             {% csrf_token %}
             <textarea class="input_task" id="" cols="70" rows="5" name="task"
                         placeholder="write your note"></textarea>

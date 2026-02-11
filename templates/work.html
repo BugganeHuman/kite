@@ -14,7 +14,9 @@
 
 <body>
     {% if user.is_authenticated %}
-        <form action="{% url 'add_task' "work" %}" method="POST" id="form_add_task_work">
+        <form hx-post="{% url 'add_task' "work" %}" id="form_add_task_work"
+                hx-target="#tasks_list_work" hx-select="#tasks_list_work"
+                    hx-swap="outerHTML">
             {% csrf_token %}
             <input type="text" name="task" id="input_task_work" class="input_task"
                    placeholder="Write your work task">
