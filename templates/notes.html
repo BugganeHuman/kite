@@ -15,10 +15,11 @@
     {% if user.is_authenticated %}
 
         <form hx-post="{% url 'add_task' "notes" %}" hx-target="#tasks_list_notes"
-                hx-select="#tasks_list_notes" hx-swap="outerHTML">
+                hx-select="#tasks_list_notes" hx-swap="outerHTML"
+                hx-on::after-request="document.getElementById('textarea_add_note_notes').value = ''">
             {% csrf_token %}
-            <textarea class="input_task" id="" cols="70" rows="5" name="task"
-                        placeholder="write your note"></textarea>
+            <textarea class="input_task" id="textarea_add_note_notes" cols="70" rows="5" name="task"
+                        placeholder="write your note" autocomplete="off"></textarea>
             <button type="submit" class="btn_add_task">Add</button>
         </form>
         <button class="btn_change_theme">🔆</button>

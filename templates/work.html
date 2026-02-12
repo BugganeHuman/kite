@@ -16,10 +16,12 @@
     {% if user.is_authenticated %}
         <form hx-post="{% url 'add_task' "work" %}" id="form_add_task_work"
                 hx-target="#tasks_list_work" hx-select="#tasks_list_work"
-                    hx-swap="outerHTML">
+                    hx-swap="outerHTML"
+              hx-on::after-request="document.getElementById('input_task_work').value = ''">
+
             {% csrf_token %}
             <input type="text" name="task" id="input_task_work" class="input_task"
-                   placeholder="Write your work task">
+                   placeholder="Write your work task" autocomplete="off">
             <button type="submit" id="btn_add_task_work" class="btn_add_task">Add</button>
         </form>
 

@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -15,9 +15,11 @@
 <body>
     {% if user.is_authenticated %}
         <form hx-post="{% url 'add_task' "main" %}" hx-target="#tasks_list_main"
-                hx-swap="outerHTML" hx-select="#tasks_list_main">
+                hx-swap="outerHTML" hx-select="#tasks_list_main"
+                hx-on::after-request="document.getElementById('input_task_main').value = ''">
             {% csrf_token %}
-            <input type="text" name="task" id="input_task_main" class="input_task" placeholder="Write your task">
+            <input type="text" name="task" id="input_task_main"
+                   class="input_task" placeholder="Write your task" autocomplete="off">
             <button type="submit" id="btn_add_task_main" class="btn_add_task">Add</button>
 
         </form>
