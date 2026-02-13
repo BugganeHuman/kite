@@ -18,7 +18,7 @@
                 hx-select="#tasks_list_notes" hx-swap="outerHTML"
                 hx-on::after-request="document.getElementById('textarea_add_note_notes').value = ''">
             {% csrf_token %}
-            <textarea class="input_task" id="textarea_add_note_notes" cols="70" rows="5" name="task"
+            <textarea  id="textarea_add_note_notes" cols="41" rows="5" name="task"
                         placeholder="write your note" autocomplete="off"></textarea>
             <button type="submit" class="btn_add_task">Add</button>
         </form>

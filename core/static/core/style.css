@@ -16,6 +16,14 @@ body{
     margin-top: 10px;
 }
 
+#textarea_add_note_notes{
+    font-size: 40px;
+    font-family: monospace;
+    margin-left: 40px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
 .btn_add_task{
     font-family: monospace;
     font-size: 40px;
