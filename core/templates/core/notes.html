@@ -7,7 +7,8 @@
 	{% for note in tasks %}
         <li id="li_id-{{ note.id }}">
 
-        <div id="id-{{ note.id }}" class="task">{{ note.task|linebreaksbr }}</div>
+        <div id="id-{{ note.id }}" class="task"
+            style="font-size: 30px; line-height: 1.5;">{{ note.task|linebreaksbr }}</div>
 
         <form >
             {% csrf_token %}
